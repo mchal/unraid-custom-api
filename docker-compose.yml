@@ -1,0 +1,22 @@
+version: "3"
+services:
+  fastapi-postgres:
+    build:
+      context: .
+      dockerfile: PostgresDockerfile
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=watchlist
+      - POSTGRES_PASSWORD=blahblah
+      - POSTGRES_DB=watchlist
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+volumes:
+  postgres:
